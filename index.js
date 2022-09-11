@@ -18,8 +18,12 @@ const rootHandler = async (req, res) => {
         body: req.body,
         method: req.method,
     }
-    console.log(">>> req:", data);
-    await fs.writeFile("req.json", JSON.stringify(data, null, 2));
+
+    try {
+        await fs.writeFile("req.json", JSON.stringify(data, null, 2));
+    } catch (e) {
+        console.log(">>> error:write", e);
+    }
 };
 
 app.get("/", (req, res) => {
