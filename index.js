@@ -19,6 +19,7 @@ const rootHandler = async (req, res) => {
         method: req.method,
     }
 
+    console.log(">>> data:", data);
     try {
         await fs.writeFile("req.json", JSON.stringify(data, null, 2));
     } catch (e) {
