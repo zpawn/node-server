@@ -32,4 +32,16 @@ app.post("/", (req, res) => {
     res.status(201).json({ success: true });
 });
 
+app.get("/req", async (req, res) => {
+    let content;
+
+    try {
+        content = await fs.readFile("req.json", "utf-8");
+    } catch (err) {
+        return res.sendStatus(404);
+    }
+
+    res.json({ content });
+})
+
 app.listen(3000, () => console.log("API Server running..."));
